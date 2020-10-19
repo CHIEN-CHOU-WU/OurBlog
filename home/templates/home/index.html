@@ -6,7 +6,7 @@
 <br>
 <ul>
 {% for post in object_list %}
-	<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a> - {{post.category}} <small> - {{post.post_date }} </small>
+	<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a> - {{post.category}} <small> - {{post.title }} </small>
 		{% if user.is_superuser %}
 			<small>
 			<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
