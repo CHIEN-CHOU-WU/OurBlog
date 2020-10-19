@@ -18,7 +18,7 @@ class Home_View(ListView):
 	model = Post
 	template_name = 'home/index.html'
 	# ordering = ['-id']    					   # 讓最新的 post 在最上面
-	#ordering = ['-post_date']
+	ordering = ['-post_date']
 
 class DetailPost_View(DetailView):
 	model = Post
