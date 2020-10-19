@@ -1,0 +1,36 @@
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+
+from .models import Post
+from .forms import PostForm
+# Create your views here.
+'''
+def home_view(request, *args, **kwargs):
+	#context = {'object': studentperformance.objects.all()}
+	#return HttpResponse("<h1>Django 版本!<h1>")
+
+	return render(request, "home/index.html", {})
+'''
+
+class Home_View(ListView):
+	model = Post
+	template_name = 'home/index.html'
+
+class DetailPost_View(DetailView):
+	model = Post
+	template_name = 'post/detail_post.html'
+
+
+class AddPost_View(CreateView):
+	model = Post
+	form_class = PostForm
+	template_name = 'post/add_post.html'
+	# fields = '__all__'
+	# fields = ('title', 'body')
+
+class UpdatePost_View(UpdateView):
+	model = Post
+	form_class = PostForm
+	template_name = 'post/update_post.html'
+	#fields = ('title', 'title_tag', 'body')
