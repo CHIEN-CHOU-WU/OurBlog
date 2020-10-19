@@ -50,5 +50,5 @@ class AddCategory_View(CreateView):
 
 
 def Category_View(request, cats):
-	category_posts = Post.objects.filter(category=cats)       # replace('-', ' ') 如果 category 中間有空格會被 '-' 取代
-	return render(request, 'category/category.html', {'cats': cats.title(), 'category_posts': category_posts})
+	category_posts = Post.objects.filter(category=cats.replace('-', ' '))       # replace('-', ' ') 如果 category 中間有空格會被 '-' 取代
+	return render(request, 'category/category.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts})
