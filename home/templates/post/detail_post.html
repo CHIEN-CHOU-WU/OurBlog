@@ -8,7 +8,7 @@
 
 <h1>{{ object.title }}</h1>
 <small>By: {{ object.author.first_name }} 
-{{ object.author.last_name }} </small> - {{ object.author.last_name }}  
+{{ object.author.last_name }} </small> - {{ object.post_date }}  
 
 {% if user.is_superuser %}
 <small>
