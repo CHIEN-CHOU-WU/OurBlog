@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm
 # Create your views here.
 '''
@@ -42,3 +42,9 @@ class DeletePost_View(DeleteView):
 	model = Post
 	template_name = 'post/delete_post.html'
 	success_url	= reverse_lazy('home')			# models.py 的 reverse 對 deletepost 無效
+
+class AddCategory_View(CreateView):
+	model = Category
+	# form_class = PostForm
+	template_name = 'post/add_category.html'
+	fields = '__all__'
