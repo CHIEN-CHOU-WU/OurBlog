@@ -9,7 +9,7 @@ class Post(models.Model):
 	title_tag = models.CharField(max_length=255)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)    # CASCADE 刪除作者，會一起刪除
 	body = models.TextField()
-	post_date = models.DateField(auto_now_add=True)
+	#post_date = models.DateField(auto_now_add=True)
 	category = models.CharField(max_length=255, default='uncatogoriezed')
 
 	def __str__(self):

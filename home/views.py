@@ -24,7 +24,6 @@ class DetailPost_View(DetailView):
 	model = Post
 	template_name = 'post/detail_post.html'
 
-
 class AddPost_View(CreateView):
 	model = Post
 	form_class = PostForm
@@ -48,3 +47,7 @@ class AddCategory_View(CreateView):
 	# form_class = PostForm
 	template_name = 'post/add_category.html'
 	fields = '__all__'
+
+
+#def Category_View(request, cats):
+#	return render(request, 'category.html', {'cats': cats})
