@@ -7,6 +7,7 @@ choice_list = []
 
 for item in choices:
 	choice_list.append(item)
+	choice_list.sort()
 
 class PostForm(forms.ModelForm):
 	class Meta:
