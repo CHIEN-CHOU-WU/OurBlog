@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     # third part
 
     # own
-    'home',    
+    'home',
+    'members',  
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ STATICFILES_DIRS = [
 ]
 
 django_heroku.settings(locals())
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

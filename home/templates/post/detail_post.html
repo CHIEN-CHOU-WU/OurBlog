@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
 
 {% block title %}
-      {{ post.title }}
+      {{ object.title }}
 {% endblock %}
 
 {% block content %}
 
-<h1>{{ post.title }}</h1>
-<small>By: {{ post.author.first_name}} 
-{{ post.author.last_name }} <a href="{% url 'post-edit' post.pk %}">(Edit)</a> </small> <br/>
+<h1>{{ object.title }}</h1>
+<small>By: {{ object.author.first_name }} 
+{{ object.author.last_name }} </small> - {{ object.post_date }}  
+
+{% if user.is_superuser %}
+<small>
+	- <a href="{% url 'post-edit' object.pk %}">(Edit)</a>
+	<a href="{% url 'post-delete' post.pk %}">(Delete)</a></small>
+{% endif %}
+<br/>
 <hr>
 <br/>
-{{ post.body }}
+{{ object.body }}
 
 
 <br/><br/	>
 <a class="btn btn-primary" href="{% url 'home' %}" role="button">Home</a>
+
 
 {% endblock %}

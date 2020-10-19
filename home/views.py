@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 from .models import Post
 from .forms import PostForm
@@ -16,6 +17,8 @@ def home_view(request, *args, **kwargs):
 class Home_View(ListView):
 	model = Post
 	template_name = 'home/index.html'
+	# ordering = ['-id']    					   # 讓最新的 post 在最上面
+	ordering = ['-post_date']
 
 class DetailPost_View(DetailView):
 	model = Post
@@ -34,3 +37,8 @@ class UpdatePost_View(UpdateView):
 	form_class = PostForm
 	template_name = 'post/update_post.html'
 	#fields = ('title', 'title_tag', 'body')
+
+class DeletePost_View(DeleteView):
+	model = Post
+	template_name = 'post/delete_post.html'
+	success_url	= reverse_lazy('home')			# models.py 的 reverse 對 deletepost 無效

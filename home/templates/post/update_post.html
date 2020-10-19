@@ -6,6 +6,7 @@
 
 {% block content %}
 
+{% if user.is_superuser %}
 <h1>Edit Your Blog!</h1>
 <br><br>
 <div class="form-group">
@@ -15,5 +16,6 @@
 		<small><button type="submit" class="btn btn-success">Update</button></small>
 	</form>
 </div>
+{% endif %}
 
 {% endblock %}
