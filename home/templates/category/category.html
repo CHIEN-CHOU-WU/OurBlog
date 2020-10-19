@@ -2,9 +2,28 @@
 
 {% block content %}
 
-<h1>Catagories</h1>
+{% if category_posts %}
+<h1>{{ cats }}</h1>
 
+<ul>
+{% for post in category_posts %}
+	<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a><small> - {{post.post_date }} </small>
+		{% if user.is_superuser %}
+			<small>
+			<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
+			<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
+			</small>
+		{% endif %}
+		<br>
+		{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
+	</li>
+	<br>
+{% endfor %}
+</ul>
 
+{% else %}
+<h2>Sorry...no post here</h2>
 
+{%endif%}
 
 {% endblock %}

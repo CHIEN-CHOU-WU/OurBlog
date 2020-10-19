@@ -49,5 +49,6 @@ class AddCategory_View(CreateView):
 	fields = '__all__'
 
 
-#def Category_View(request, cats):
-#	return render(request, 'category.html', {'cats': cats})
+def Category_View(request, cats):
+	category_posts = Post.objects.filter(category=cats)
+	return render(request, 'category/category.html', {'cats': cats.title(), 'category_posts': category_posts})
