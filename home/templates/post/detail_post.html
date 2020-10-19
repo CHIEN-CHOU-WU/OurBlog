@@ -10,10 +10,12 @@
 <small>By: {{ object.author.first_name }} 
 {{ object.author.last_name }} </small> - {{ object.post_date }}  
 
-{% if user.is_superuser %}
-<small>
-	- <a href="{% url 'post-edit' object.pk %}">(Edit)</a>
-	<a href="{% url 'post-delete' post.pk %}">(Delete)</a></small>
+{% if user.is_authenticated %}
+	{% if user.id == object.author.id %}
+		<small>
+			- <a href="{% url 'post-edit' object.pk %}">(Edit)</a>
+			<a href="{% url 'post-delete' post.pk %}">(Delete)</a></small>
+	{% endif %}
 {% endif %}
 <br/>
 <hr>

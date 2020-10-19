@@ -8,11 +8,13 @@
 <ul>
 {% for post in category_posts %}
 	<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a><small> - {{post.post_date }} </small>
-		{% if user.is_superuser %}
-			<small>
-			<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
-			<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
-			</small>
+		{% if user.is_authenticated %}
+			{% if user.id == post.author.id %}
+				<small>
+				<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
+				<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
+				</small>
+			{% endif %}
 		{% endif %}
 		<br>
 		{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
