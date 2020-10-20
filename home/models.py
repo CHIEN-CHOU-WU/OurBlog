@@ -16,8 +16,8 @@ class Post(models.Model):
 		return self.title + ' | ' + str(self.author)
 
 	def get_absolute_url(self):                                   # CreateView 需要用到
-		#return reverse('post-details', args=(str(self.id)))
-		return reverse('home')               # 導回主頁 home
+		return reverse('post-details', args=([str(self.pk)]))
+		#return reverse('home')               # 導回主頁 home
 
 class Category(models.Model):
 	name = models.CharField(max_length=255)
@@ -27,4 +27,4 @@ class Category(models.Model):
 
 	def get_absolute_url(self):                                   # CreateView 需要用到
 		# return reverse('post-details', args=(str(self.id)))
-		return reverse('home')
+		return reverse('category-add')
