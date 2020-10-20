@@ -11,6 +11,7 @@ class Post(models.Model):
 	body = models.TextField()
 	post_date = models.DateField(auto_now_add=True)
 	category = models.CharField(max_length=255, default='uncatogoriezed')
+	#-----------------------------------------------------------------#
 	likes = models.ManyToManyField(User, related_name='blog_posts')		
 	'''
 	ManyToMany 可以連結不同 database (多個讚 多個使用者)
@@ -22,7 +23,7 @@ class Post(models.Model):
 	1		post_id	   integer    1							0
 	2		user_id	   integer    1							0
 	'''
-
+	#-----------------------------------------------------------------#
 
 	def __str__(self):
 		return self.title + ' | ' + str(self.author)

@@ -22,8 +22,8 @@
 				{% if user.is_authenticated %}
 				{% if user.id == post.author.id or user.is_superuser%}
 				<small>
-					<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
-					<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
+					<a href="{% url 'post-edit' post.pk %}"><button type="button" class="btn btn-outline-info btn-sm"><i class="fa fa-pencil-square-o"></i></button></a>
+					<a href="{% url 'post-delete' post.pk %}"><button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button></a>
 				</small>
 				{% endif %}
 				{% endif %}

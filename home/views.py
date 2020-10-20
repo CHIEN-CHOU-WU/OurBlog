@@ -31,6 +31,7 @@ class DetailPost_View(DetailView):
 	template_name = 'post/detail_post.html'
 
 	# 傳入 categories 到詳細資訊 讓 Navbar 的 categories 可以讀取
+	# 傳入 全部 讚數
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(DetailPost_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
@@ -38,7 +39,14 @@ class DetailPost_View(DetailView):
 		# 傳入讚數
 		temp = get_object_or_404(Post, id=self.kwargs['pk'])
 		total_likes = temp.total_likes()
+		# 看看 讚 有沒有被取消
+		liked = False
+		if temp.likes.filter(id=self.request.user.id).exists():
+			liked = True
+
 		context["total_likes"] = total_likes
+		context["liked"] = liked
+
 		return context
 
 class AddPost_View(CreateView):
@@ -107,6 +115,14 @@ def Category_View(request, cats):
 
 def Like_View(request, pk):
 	post = get_object_or_404(Post, id=request.POST.get('post_id'))    # button 的 name = post_id
-	# now save that like to the table (also the user)
-	post.likes.add(request.user)
+	# 收回 like
+	liked = False
+	if post.likes.filter(id=request.user.id).exists():
+		post.likes.remove(request.user)
+		liked = False
+	else:
+		# now save that like to the table (also the user)
+		liked = True
+		post.likes.add(request.user)
+
 	return HttpResponseRedirect(reverse('post-details', args=[str(pk)]))
