@@ -24,8 +24,17 @@
 		{{ object.body|safe }}
 
 
-		<br/><br/	>
+		<br/><br/>
+
+		<br/>
+		<form action="{% url 'like-post' post.pk %}" method="POST">
+			{% csrf_token %}
+			<button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+			- {{ total_likes }} Likes
+		</form>
+		<hr>
+		<br/>
 		<a class="btn btn-primary" href="{% url 'home' %}" role="button">Home</a>
 	</div>
-
+	<br><br>
 	{% endblock %}

@@ -1,7 +1,7 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from .models import Post, Category
 from .forms import PostForm
@@ -13,11 +13,6 @@ def home_view(request, *args, **kwargs):
 
 	return render(request, "home/index.html", {})
 '''
-
-def Landing_View(request, *args, **kwargs):
-	
-	return render(request, "home/landing_page.html", {})
-
 class Home_View(ListView):
 	model = Post
 	template_name = 'home/index.html'
@@ -40,6 +35,10 @@ class DetailPost_View(DetailView):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(DetailPost_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
 		context["cat_menu"] = cat_menu
+		# 傳入讚數
+		temp = get_object_or_404(Post, id=self.kwargs['pk'])
+		total_likes = temp.total_likes()
+		context["total_likes"] = total_likes
 		return context
 
 class AddPost_View(CreateView):
@@ -104,3 +103,10 @@ def Category_View(request, cats):
 		cat_menu.append(cates['name'])
 
 	return render(request, 'category/category.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts, 'cat_menu': cat_menu})
+
+
+def Like_View(request, pk):
+	post = get_object_or_404(Post, id=request.POST.get('post_id'))    # button 的 name = post_id
+	# now save that like to the table (also the user)
+	post.likes.add(request.user)
+	return HttpResponseRedirect(reverse('post-details', args=[str(pk)]))
