@@ -1,4 +1,4 @@
-
+/* 手機 */
 @media only screen and (max-width: 450px) {
 	html, body {
 		font-family: Gill Sans, sans-serif;
@@ -36,6 +36,7 @@
 
 }
 
+/* 電腦 */
 @media only screen and (min-width: 450px) {
 	/* scroll-behavior: smooth; 按按鈕可以順順的滑到位置 */
 	html, body {
@@ -58,6 +59,8 @@
 		margin: 0 0 18px;
 		text-shadow: 1px 0 0 #fff;
 	}
+
+	
 
 	#home {
 		background: url("../image/landing2.png")no-repeat center center fixed;

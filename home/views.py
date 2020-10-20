@@ -35,7 +35,7 @@ class DetailPost_View(DetailView):
 	model = Post
 	template_name = 'post/detail_post.html'
 
-	# 傳入 categories 到首頁 讓 Navbar 的 categories 可以讀取
+	# 傳入 categories 到詳細資訊 讓 Navbar 的 categories 可以讀取
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(DetailPost_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
@@ -49,6 +49,7 @@ class AddPost_View(CreateView):
 	# fields = '__all__'
 	# fields = ('title', 'body')
 
+	# 傳入 categories 到新增頁 讓 Navbar 的 categories 可以讀取
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(AddPost_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
@@ -61,6 +62,7 @@ class UpdatePost_View(UpdateView):
 	template_name = 'post/update_post.html'
 	#fields = ('title', 'title_tag', 'body')
 
+	# 傳入 categories 到修改頁 讓 Navbar 的 categories 可以讀取
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(UpdatePost_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
@@ -72,6 +74,7 @@ class DeletePost_View(DeleteView):
 	template_name = 'post/delete_post.html'
 	success_url	= reverse_lazy('home')			# models.py 的 reverse 對 deletepost 無效
 
+	# 傳入 categories 到刪除頁 讓 Navbar 的 categories 可以讀取
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(DeletePost_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
@@ -84,6 +87,7 @@ class AddCategory_View(CreateView):
 	template_name = 'post/add_category.html'
 	fields = '__all__'
 
+	# 傳入 categories 到新增種類頁 讓 Navbar 的 categories 可以讀取
 	def get_context_data(self, *args, **kwargs):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(AddCategory_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
@@ -94,5 +98,9 @@ class AddCategory_View(CreateView):
 # 瀏覽種類頁面用
 def Category_View(request, cats):
 	category_posts = Post.objects.filter(category=cats.replace('-', ' '))       # replace('-', ' ') 如果 category 中間有空格會被 '-' 取代
-	return render(request, 'category/category.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts})
+	cat_type = Category.objects.values('name')
+	cat_menu = []
+	for cates in cat_type:
+		cat_menu.append(cates['name'])
 
+	return render(request, 'category/category.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts, 'cat_menu': cat_menu})

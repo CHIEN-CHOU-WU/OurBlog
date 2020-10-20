@@ -16,7 +16,8 @@ class PostForm(forms.ModelForm):
 		widgets = {
 			'title': forms.TextInput(attrs={'class': 'form-control'}),
 			'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-			'author': forms.Select(attrs={'class': 'form-control'}),
+			'author': forms.TextInput(attrs={'value': '', 'id': 'userid', 'type': 'hidden'}), # value 用 js 傳進現在登陸的是誰， type hidden 隱藏
+			# 'author': forms.Select(attrs={'class': 'form-control'}),
 			'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
 			'body': forms.Textarea(attrs={'class': 'form-control'}),
 		}

@@ -17,6 +17,16 @@ Add Post
 			<button type="submit" class="btn btn-success">Post</button>
 		</form>
 	</div>
+
+
 	{% endif %}
 </div>
+
+
+<!-- Scripts -->
+<script type="text/javascript">
+	var name = '{{user.id}}'
+	document.getElementById('userid').value = name;
+</script>
 {% endblock %}
+
