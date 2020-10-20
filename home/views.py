@@ -14,6 +14,10 @@ def home_view(request, *args, **kwargs):
 	return render(request, "home/index.html", {})
 '''
 
+def Landing_View(request, *args, **kwargs):
+	
+	return render(request, "home/landing_page.html", {})
+
 class Home_View(ListView):
 	model = Post
 	template_name = 'home/index.html'

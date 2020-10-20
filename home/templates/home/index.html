@@ -2,26 +2,40 @@
 
 {% block content %}
 
-<h1>Post</h1>
-<br>
-<ul>
-{% for post in object_list %}
-	<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a> - <a href="{% url 'category' post.category|slugify %}">{{post.category}}</a> <small> - {{post.post_date }} </small>
-		{% if user.is_authenticated %}
-			{% if user.id == post.author.id or user.is_superuser%}
-				<small>
-				<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
-				<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
-				</small>
-			{% endif %}
-		{% endif %}
-		 <br>
-		 {{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
-	</li>
-	<br>
-{% endfor %}
-</ul>
-<hr>
-<br/>
+<div id='home'>
+	<div class="landing-text">
+		<h1>Wang & Wu's Blog</h1>
+			<br><br>
+			<div class="btn btn-one">
+				<span>HOVER ME</span>
 
+		</div>
+	</div>
+</div>
+
+<div  class="padding">
+	<div class="container">
+		<h1>Post</h1>
+		<br>
+		<ul>
+			{% for post in object_list %}
+			<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a> - <a href="{% url 'category' post.category|slugify %}">{{post.category}}</a> <small> - {{post.post_date }} </small>
+				{% if user.is_authenticated %}
+				{% if user.id == post.author.id or user.is_superuser%}
+				<small>
+					<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
+					<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
+				</small>
+				{% endif %}
+				{% endif %}
+				<br>
+				{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
+			</li>
+			<br>
+			{% endfor %}
+		</ul>
+		<hr>
+		<br/>
+	</div>
+</div>
 {% endblock %}
