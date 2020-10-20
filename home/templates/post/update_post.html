@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}
-      Edit Post
+Edit Post
 {% endblock %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-<h1>Edit Your Blog!</h1>
-<br><br>
-<div class="form-group">
-	<form method="POST">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<small><button type="submit" class="btn btn-success">Update</button></small>
-	</form>
+<div class="container">
+	<br><br>
+	{% if user.is_authenticated %}
+	<h1>Edit Your Blog!</h1>
+	<br><br>
+	<div class="form-group">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<small><button type="submit" class="btn btn-success">Update</button></small>
+		</form>
+	</div>
+	{% endif %}
 </div>
-{% endif %}
-
 {% endblock %}

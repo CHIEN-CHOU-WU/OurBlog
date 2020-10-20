@@ -2,30 +2,32 @@
 
 {% block content %}
 
-{% if category_posts %}
-<h1>{{ cats }}</h1>
+<div class="container">
+	<br><br>
+	{% if category_posts %}
+	<h1>{{ cats }}</h1>
 
-<ul>
-{% for post in category_posts %}
-	<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a><small> - {{post.post_date }} </small>
-		{% if user.is_authenticated %}
+	<ul>
+		{% for post in category_posts %}
+		<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a><small> - {{post.post_date }} </small>
+			{% if user.is_authenticated %}
 			{% if user.id == post.author.id %}
-				<small>
+			<small>
 				<a href="{% url 'post-edit' post.pk %}">(Edit)</a>
 				<a href="{% url 'post-delete' post.pk %}">(Delete)</a>
-				</small>
+			</small>
 			{% endif %}
-		{% endif %}
+			{% endif %}
+			<br>
+			{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
+		</li>
 		<br>
-		{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
-	</li>
-	<br>
-{% endfor %}
-</ul>
+		{% endfor %}
+	</ul>
 
-{% else %}
-<h2>Sorry...no post here</h2>
+	{% else %}
+	<h2>Sorry...no post here</h2>
 
-{%endif%}
-
+	{%endif%}
+</div>
 {% endblock %}
