@@ -22,7 +22,7 @@
 	}
 
 	#home {
-		background: url("../image/landing-mobile2.png")no-repeat center center fixed;
+		background: url("../image/landing-mobile3.png")no-repeat center center fixed;
 		display: table;
 		height: 100%;
 		position: relative;
@@ -31,7 +31,7 @@
 	}
 
 	.padding {
-		padding: 20px 0;
+		padding: 80px 0;
 	}
 
 }
