@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block title %}
 {{ object.title }}
 {% endblock %}
@@ -19,12 +20,16 @@
 	<br/>
 	<hr>
 
-	{% if post.author.profile.profile_pic %}
+	
 	<div class="container" >
 		<div class="card mb-3 card-backgroud">
 			<div class="row no-gutters justify-content-center">
 				<div class="col-md-2">
+					{% if post.author.profile.profile_pic %}
 					<img src="{{ post.author.profile.profile_pic.url }}" class="card-img rounded-sm border border-info">
+					{% else %}
+					<img src="{% static 'image/default_user.png' %}" class="card-img rounded-sm border border-info">
+					{% endif %}
 				</div>
 				<div class="col-md-10">
 					<div class="card-body">
@@ -84,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-	{% endif %}
+	
 
 
 
