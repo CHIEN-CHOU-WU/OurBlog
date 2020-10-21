@@ -13,6 +13,7 @@ Edit Post
 	<div class="form-group">
 		<form method="POST">
 			{% csrf_token %}
+			{{ form.media }}
 			{{ form.as_p }}
 			<small><button type="submit" class="btn btn-success">Update</button></small>
 		</form>
