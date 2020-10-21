@@ -28,7 +28,7 @@
 				{% endif %}
 				{% endif %}
 				<br>
-				{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
+				{{ post.snippet|slice:":200"|safe }}          <!-- 縮減200字以內 -->
 			</li>
 			<br>
 			{% endfor %}
