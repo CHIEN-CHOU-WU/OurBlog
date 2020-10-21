@@ -29,7 +29,7 @@ class Post(models.Model):
 	#-----------------------------------------------------------------#
 
 	# 加入本地照片
-	header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+	header_image = models.ImageField(null=True, blank=True, upload_to="image/")
 
 	def __str__(self):
 		return self.title + ' | ' + str(self.author)
