@@ -64,4 +64,4 @@ class Profile(models.Model):
 	linkedin_url = models.CharField(max_length=255, null=True, blank=True)
 
 	def __str__(self):
-		return str(self.user)
+		return str(self.user)	

@@ -147,3 +147,109 @@
 	transform: scale(0.1, 1);
 }
 /* 首頁 Button */
+
+
+/* social Button */
+.card-backgroud{
+	background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+}
+.social {
+	display:grid;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	height: 5px;
+}
+
+
+
+.wrapper .social-button {
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	float: left;
+	margin: 0 4px;
+	background: #fff;
+	border-radius: 20px;
+	cursor: pointer;
+	box-sizing: 0px, 5px, 5px, rgba(0,0,0,0.1);
+	transition: all 0.3s ease-out;
+	overflow: hidden;
+}
+
+.wrapper .social-button:nth-child(1):hover {
+	width: 110px;
+}
+
+.wrapper .social-button:nth-child(2):hover {
+	width: 110px;
+}
+
+.wrapper .social-button:nth-child(3):hover {
+	width: 102px;
+}
+
+.wrapper .social-button:nth-child(4):hover {
+	width: 90px;
+}
+
+.wrapper .social-button .social-icon {
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 20px;
+	box-sizing: border-box;
+	transition: all 0.3s ease-out;
+}
+
+.wrapper .social-button:nth-child(1):hover .social-icon {
+	background: #fe4164;
+}
+.wrapper .social-button:nth-child(2):hover .social-icon {
+	background: #4367B2;
+}
+.wrapper .social-button:nth-child(3):hover .social-icon {
+	background: #0e76a8;
+}
+.wrapper .social-button:nth-child(4):hover .social-icon {
+	background: #333;
+}
+
+.wrapper .social-button .social-icon i {
+	font-size: 20px;
+	line-height: 30px;
+	color: #1E1E1E;
+}
+
+.wrapper .social-button:hover .social-icon i {
+	color: #fff;
+	transition: all 0.3s ease-out;
+}
+
+.wrapper .social-button span {
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 0px;
+	line-height: : 30px;
+
+}
+
+.wrapper .social-button:nth-child(1) span {
+	color: #fe4164;
+}
+.wrapper .social-button:nth-child(2) span {
+	color: #4367B2;
+}
+.wrapper .social-button:nth-child(3) span {
+	color: #0e76a8;
+}
+.wrapper .social-button:nth-child(4) span {
+	color: #4d4dff;
+}
+
+
+/* social Button */

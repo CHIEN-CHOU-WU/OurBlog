@@ -18,10 +18,83 @@
 	{% endif %}
 	<br/>
 	<hr>
+
+	{% if post.author.profile.profile_pic %}
+	<div class="container" >
+		<div class="card mb-3 card-backgroud">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-md-2">
+					<img src="{{ post.author.profile.profile_pic.url }}" class="card-img rounded-sm border border-info">
+				</div>
+				<div class="col-md-10">
+					<div class="card-body">
+						<h5 class="card-title">{{ object.author.first_name }} {{ object.author.last_name }}</h5>
+						<div class="social">
+							<div class="wrapper">
+								{% if object.author.profile.instagram_url %}
+								<div class="social-button">
+									<a href="{{ object.author.profile.instagram_url }}" style="text-decoration: none" target="_blank">
+										<div class="social-icon">
+											<i class="fab fa-instagram"></i>
+										</div>
+										<span>Instagram</span>
+									</a>
+								</div>
+								{% endif %}
+								{% if object.author.profile.facebook_url %}
+								<div class="social-button">
+									<a href="{{ object.author.profile.facebook_url }}" style="text-decoration: none" target="_blank">
+										<div class="social-icon">
+											<i class="fab fa-facebook-f"></i>
+										</div>
+										<span>Facebook</span>
+									</a>
+								</div>
+								{% endif %}
+								{% if object.author.profile.linkedin_url %}
+								<div class="social-button">
+									<a href="{{ object.author.profile.linkedin_url }}" style="text-decoration: none" target="_blank">
+										<div class="social-icon">
+											<i class="fab fa-linkedin-in"></i>
+										</div>
+										<span>LinkedIn</span>
+									</a>
+								</div>
+								{% endif %}
+								{% if object.author.profile.website_url %}
+								<div class="social-button">
+									<a href="{{ object.author.profile.website_url }}" style="text-decoration: none" target="_blank">
+										<div class="social-icon">
+											<i class="fab fa-github"></i>
+										</div>
+										<span>Github</span>
+									</a>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+						<br><hr>
+
+						<p class="card-text">{{ object.author.profile.bio }}</p>
+						
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+
+
+	<hr>
 	<br/>
+
 	{% if post.header_image %}
 	<img src="{{ post.header_image.url }}" alt="">
 	{% endif %}
+
 	<br><br>
 	{{ object.body|safe }}
 
