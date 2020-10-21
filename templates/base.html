@@ -68,18 +68,28 @@
               Post
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#post">My Post</a>
+              <a class="dropdown-item" href="/#post">My Post</a>
               <a class="dropdown-item" href="{% url 'post-add' %}">Add Post</a>
               <a class="dropdown-item" href="{% url 'category-add' %}">Add Category</a>
 
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
-          </li><!-- Category Menu Code -->
+          </li><!-- End Category Menu Code -->
 
-          <li class="nav-item active font-weight-bold">
-            <a class="nav-link " href="{% url 'logout' %}" style="font-family: cursive;">Logout <span class="sr-only">(current)</span></a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: cursive;">
+              Profile
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Profile</a>
+
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
+            </div>
           </li>
+
 
           {% else %}
           <!-- Category Menu Code -->
@@ -93,7 +103,7 @@
               <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a>
               {% endfor %}
             </div>
-          </li>
+          </li><!-- End Category Menu Code -->
           {% endif %}
 
           <li class="nav-item active">
