@@ -19,6 +19,10 @@
 	<br/>
 	<hr>
 	<br/>
+	{% if post.header_image %}
+	<img src="{{ post.header_image.url }}" alt="">
+	{% endif %}
+	<br><br>
 	{{ object.body|safe }}
 
 
@@ -27,8 +31,6 @@
 	<br/>
 	<form action="{% url 'like-post' post.pk %}" method="POST">
 		{% csrf_token %}
-
-
 
 		{% if not liked %}
 		<button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-secondary btn-sm disabled"><i class="fa fa-heart"></i> </button>
