@@ -24,6 +24,7 @@ class Home_View(ListView):
 		cat_menu = Category.objects.all()		   # 建造 queryset
 		context = super(Home_View, self).get_context_data(*args, **kwargs)    # super 繼承 Home_View class
 		context["cat_menu"] = cat_menu
+
 		return context
 
 class DetailPost_View(DetailView):

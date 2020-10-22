@@ -10,7 +10,7 @@ Delete Post
 	{% if user.is_authenticated %}
 	<h1>Delete: {{ object.title }}</h1>
 	<br><br>
-	<p>{{ object.body }}</p>
+	<p>{{ object.body|safe }}</p>
 	<br>
 	<div class="form-group">
 		<form method="POST">
