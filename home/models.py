@@ -65,3 +65,6 @@ class Profile(models.Model):
 
 	def __str__(self):
 		return str(self.user)	
+
+	def get_absolute_url(self):                                   		# CreateView 需要用到
+		return reverse('home')

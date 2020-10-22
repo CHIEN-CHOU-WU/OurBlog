@@ -60,3 +60,15 @@ class EditProfilePageForm(ModelForm):
 			'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
 			'website_url': forms.TextInput(attrs={'class': 'form-control'}),
 		}
+
+class ProfilePageForm(ModelForm):
+	class Meta:
+		model = Profile
+		fields = ('bio', 'profile_pic', 'instagram_url', 'facebook_url', 'linkedin_url', 'website_url')
+		widgets = {
+			'bio': forms.Textarea(attrs={'class': 'form-control'}),
+			'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),
+			'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
+			'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
+			'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+		}
