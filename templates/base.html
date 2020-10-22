@@ -82,8 +82,9 @@
               Profile
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Profile</a>
-
+              <a class="dropdown-item" href="{% url 'show-profile' user.profile.id %}">View Profile</a>
+              <a class="dropdown-item" href="{% url 'edit-profile' user.profile.id %}">Edit Profile</a>
+              <a class="dropdown-item" href="{% url 'edit-setting' %}">Edit Setting</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 
