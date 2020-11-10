@@ -32,7 +32,7 @@ class Post(models.Model):
 	header_image = models.ImageField(null=True, blank=True, upload_to="image/")
 
 	def __str__(self):
-		return self.title + ' | ' + str(self.author)
+		return self.title + ' | ' + str(self.author) + ' | ' + str(self.header_image)
 
 	def get_absolute_url(self):                                   		# CreateView 需要用到
 		return reverse('post-details', args=([str(self.pk)]))

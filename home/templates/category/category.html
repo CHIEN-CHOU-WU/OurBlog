@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -7,23 +7,57 @@
 	{% if category_posts %}
 	<h1>{{ cats }}</h1>
 
-	<ul>
+	<div class="row row-cols-1 row-cols-md-3">
 		{% for post in category_posts %}
-		<li><a href="{% url 'post-details' post.pk %}">{{post.title}}</a><small> - {{post.post_date }} </small>
-			{% if user.is_authenticated %}
-			{% if user.id == post.author.id %}
-			<small>
-				<a href="{% url 'post-edit' post.pk %}"><button type="button" class="btn btn-outline-info btn-sm"><i class="fa fa-pencil-square-o"></i></button></a>
-				<a href="{% url 'post-delete' post.pk %}"><button type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i> delete</button></a>
-			</small>
-			{% endif %}
-			{% endif %}
-			<br>
-			{{ post.body|slice:":200"|safe }}          <!-- 縮減200字以內 -->
-		</li>
-		<br>
+		<div class="col mb-4">
+			<div class="card">
+			  {% if post.header_image %}
+			  <img
+				src="/media/{{ post.header_image }}"
+				class="card-img-top"
+				height="350"
+				width="200"
+			  />
+			  {% else %}
+			  <img
+				src="{% static '/image/mi.jpg' %}"
+				class="card-img-top"
+				height="350"
+				width="200"
+			  />
+			  {% endif %}
+			  <div class="card-body">
+				<hr />
+	  
+				<h5 class="card-title">
+				  <a href="{% url 'post-details' post.pk %}">{{post.title}}</a>
+				</h5>
+				<p class="card-text">
+				  <a href="{% url 'post-details' post.pk %}"></a> -
+				  <a href="{% url 'category' post.category|slugify %}"
+					>{{post.category}}</a
+				  >
+				  <small> - {{post.post_date }} </small>
+				  {% if user.is_authenticated %} {% if user.id == post.author.id or user.is_superuser %}
+				  <small>
+					<a href="{% url 'post-edit' post.pk %}"
+					  ><button type="button" class="btn btn-outline-info btn-sm">
+						<i class="fa fa-pencil-square-o"></i></button
+					></a>
+					<a href="{% url 'post-delete' post.pk %}"
+					  ><button type="button" class="btn btn-outline-danger btn-sm">
+						<i class="fa fa-trash"></i></button
+					></a>
+				  </small>
+				  {% endif %} {% endif %}<br />
+				  {{ post.snippet|slice:":200"|safe }}
+				</p>
+				<!-- 縮減200字以內 -->
+			  </div>
+			</div>
+		  </div>
 		{% endfor %}
-	</ul>
+	</div>
 
 	{% else %}
 	<h2>Sorry...no post here</h2>
@@ -31,3 +65,6 @@
 	{%endif%}
 </div>
 {% endblock %}
+
+
+
